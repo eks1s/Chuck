@@ -9,6 +9,7 @@ import "./cards.scss";
 export const Cards = () => {
     const cards = useCards((state) => state.cards);
     const searchCardsRequest = useCards((state) => state.searchCardsRequest);
+    const loading = useCards((state) => state.loading);
     const searchInputText = useSearchInput((state) => state.searchInputText);
 
     useEffect(() => {
@@ -38,10 +39,18 @@ export const Cards = () => {
 
     return (
         <div className="cards">
-            <div className="top-cards">{content(appCards, ECards.BIG)}</div>
-            <div className="bottom-cards">
-                {content(bottomCards, ECards.SMALL)}
-            </div>
+            {loading ? (
+                <div className="search">Search...</div>
+            ) : (
+                <>
+                    <div className="top-cards">
+                        {content(appCards, ECards.BIG)}
+                    </div>
+                    <div className="bottom-cards">
+                        {content(bottomCards, ECards.SMALL)}
+                    </div>
+                </>
+            )}
         </div>
     );
 };
