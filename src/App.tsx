@@ -1,13 +1,15 @@
 import "./App.css";
-import { Cards } from "./components/cards/cards";
-import { SearchInput } from "./components/searchInput/searchInput";
+import { Routes, Route } from "react-router-dom";
+import { ChucknorisPage } from "./pages/chucknoris";
+import { Layout } from "./routes/layout";
 
 function App() {
     return (
-        <>
-            <SearchInput />
-            <Cards />
-        </>
+        <Routes>
+            <Route path="/" element={<Layout />}>
+                <Route index element={<ChucknorisPage />} />
+            </Route>
+        </Routes>
     );
 }
 
